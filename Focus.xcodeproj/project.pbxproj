@@ -8,18 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		D63C1E752AB384F000166AED /* FocusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63C1E742AB384F000166AED /* FocusApp.swift */; };
-		D63C1E772AB384F000166AED /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63C1E762AB384F000166AED /* ContentView.swift */; };
+		D63C1E772AB384F000166AED /* FocusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63C1E762AB384F000166AED /* FocusView.swift */; };
 		D63C1E792AB384F400166AED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D63C1E782AB384F400166AED /* Assets.xcassets */; };
 		D63C1E7C2AB384F400166AED /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D63C1E7B2AB384F400166AED /* Preview Assets.xcassets */; };
+		D63C1E842ABBE52800166AED /* goofy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D63C1E832ABBE52800166AED /* goofy.mp3 */; };
+		D63C1E862ABBE85A00166AED /* ApplicationMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63C1E852ABBE85A00166AED /* ApplicationMenu.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D63C1E712AB384F000166AED /* Focus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Focus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D63C1E742AB384F000166AED /* FocusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusApp.swift; sourceTree = "<group>"; };
-		D63C1E762AB384F000166AED /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		D63C1E762AB384F000166AED /* FocusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusView.swift; sourceTree = "<group>"; };
 		D63C1E782AB384F400166AED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D63C1E7B2AB384F400166AED /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D63C1E7D2AB384F400166AED /* Focus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Focus.entitlements; sourceTree = "<group>"; };
+		D63C1E832ABBE52800166AED /* goofy.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = goofy.mp3; sourceTree = "<group>"; };
+		D63C1E852ABBE85A00166AED /* ApplicationMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationMenu.swift; sourceTree = "<group>"; };
+		D63C1E872ABBE9ED00166AED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,10 +57,13 @@
 		D63C1E732AB384F000166AED /* Focus */ = {
 			isa = PBXGroup;
 			children = (
+				D63C1E872ABBE9ED00166AED /* Info.plist */,
 				D63C1E742AB384F000166AED /* FocusApp.swift */,
-				D63C1E762AB384F000166AED /* ContentView.swift */,
+				D63C1E852ABBE85A00166AED /* ApplicationMenu.swift */,
+				D63C1E762AB384F000166AED /* FocusView.swift */,
 				D63C1E782AB384F400166AED /* Assets.xcassets */,
 				D63C1E7D2AB384F400166AED /* Focus.entitlements */,
+				D63C1E832ABBE52800166AED /* goofy.mp3 */,
 				D63C1E7A2AB384F400166AED /* Preview Content */,
 			);
 			path = Focus;
@@ -127,6 +135,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D63C1E842ABBE52800166AED /* goofy.mp3 in Resources */,
 				D63C1E7C2AB384F400166AED /* Preview Assets.xcassets in Resources */,
 				D63C1E792AB384F400166AED /* Assets.xcassets in Resources */,
 			);
@@ -139,7 +148,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D63C1E772AB384F000166AED /* ContentView.swift in Sources */,
+				D63C1E772AB384F000166AED /* FocusView.swift in Sources */,
+				D63C1E862ABBE85A00166AED /* ApplicationMenu.swift in Sources */,
 				D63C1E752AB384F000166AED /* FocusApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -274,6 +284,8 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Focus/Info.plist;
+				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -301,6 +313,8 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Focus/Info.plist;
+				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
