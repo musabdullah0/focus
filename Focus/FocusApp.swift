@@ -14,9 +14,6 @@ struct FocusApp: App {
         Settings {
                 EmptyView()
             }
-//        WindowGroup {
-//            FocusView()
-//        }
     }
 }
 
@@ -27,9 +24,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ notification: Notification) {
         AppDelegate.instance = self
-        statusBarItem.button?.image = NSImage(systemSymbolName: "1.circle", accessibilityDescription: "1")
-        statusBarItem.button?.imagePosition = .imageLeading
-        statusBarItem.menu = menu.createMenu()
+//        statusBarItem.button?.imagePosition = .imageLeading
+        statusBarItem.menu = menu.createMenu(button: statusBarItem.button)
+        statusBarItem.button?.title = "25:00"
     }
 }
 

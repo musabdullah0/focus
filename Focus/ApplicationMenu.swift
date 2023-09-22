@@ -11,8 +11,9 @@ import SwiftUI
 class ApplicationMenu: NSObject {
     let menu = NSMenu()
     
-    func createMenu() -> NSMenu {
+    func createMenu(button: NSStatusBarButton?) -> NSMenu {
         let focusView = FocusView()
+        
         let topView = NSHostingController(rootView: focusView)
         topView.view.frame.size = CGSize(width: 300, height: 150)
         

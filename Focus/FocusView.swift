@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Cocoa
 import AVFoundation
 
 
@@ -26,6 +27,7 @@ class PomodoroModel: ObservableObject {
     @Published var state = "idle"
     @Published var buttonText = "start"
     private var audioPlayer: AVAudioPlayer?
+//    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     // 0=pomodoro, 1=short_break, 2=long_break
     @Published var timerType: TimerType = .pomodoro
@@ -41,16 +43,24 @@ class PomodoroModel: ObservableObject {
     }
     
     func start() {
+        print("starting timer with \(self.secondsLeft) sec left")
         self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (Timer) in
             if self.secondsLeft > 0 {
                 print("\(self.secondsLeft) sec left")
                 self.secondsLeft -= 1
                 self.time = self.timeText()
+//                self.appDelegate.statusBarItem.button?.title = self.time
+
             } else {
                 self.playSound()
                 Timer.invalidate()
             }
         }
+        /*
+         https://stackoverflow.com/questions/27997485/nstimer-not-firing-when-nsmenu-is-open-in-swift
+         */
+        RunLoop.main.add(self.timer!, forMode: .common)
+
         if self.timerType == .pomodoro {
             self.state = "focus"
         } else if self.timerType == .shortbreak {
@@ -159,9 +169,15 @@ struct FocusView: View {
         .padding()
         .frame(width: 300, height: 150)
         .background(Color.indigo)
+//        .onAppear() {
+//            self.button?.title = self.model.time
+//        }
         
     }
+    
+    
 }
+    
 
 struct FocusView_Previews: PreviewProvider {
     static var previews: some View {
