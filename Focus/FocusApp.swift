@@ -22,10 +22,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     lazy var statusBarItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     let menu = ApplicationMenu()
     
+    
     func applicationDidFinishLaunching(_ notification: Notification) {
         AppDelegate.instance = self
-//        statusBarItem.button?.imagePosition = .imageLeading
-        statusBarItem.menu = menu.createMenu(button: statusBarItem.button)
+        statusBarItem.menu = menu.createMenu()
         statusBarItem.button?.title = "25:00"
     }
 }

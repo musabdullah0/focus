@@ -11,7 +11,7 @@ import SwiftUI
 class ApplicationMenu: NSObject {
     let menu = NSMenu()
     
-    func createMenu(button: NSStatusBarButton?) -> NSMenu {
+    func createMenu() -> NSMenu {
         let focusView = FocusView()
         
         let topView = NSHostingController(rootView: focusView)
