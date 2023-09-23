@@ -45,6 +45,7 @@ class ApplicationMenu: NSObject {
     }
     
     @objc func about(sender: NSMenuItem) {
+        NSApplication.shared.activate(ignoringOtherApps: true)
         NSApplication.shared.orderFrontStandardAboutPanel()
     }
     

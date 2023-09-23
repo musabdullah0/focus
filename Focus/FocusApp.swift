@@ -28,5 +28,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusBarItem.menu = menu.createMenu()
         statusBarItem.button?.title = "25:00"
     }
+    
 }
 

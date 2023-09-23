@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		D63C1E752AB384F000166AED /* FocusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63C1E742AB384F000166AED /* FocusApp.swift */; };
 		D63C1E772AB384F000166AED /* FocusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63C1E762AB384F000166AED /* FocusView.swift */; };
-		D63C1E792AB384F400166AED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D63C1E782AB384F400166AED /* Assets.xcassets */; };
 		D63C1E7C2AB384F400166AED /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D63C1E7B2AB384F400166AED /* Preview Assets.xcassets */; };
 		D63C1E842ABBE52800166AED /* goofy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D63C1E832ABBE52800166AED /* goofy.mp3 */; };
 		D63C1E862ABBE85A00166AED /* ApplicationMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63C1E852ABBE85A00166AED /* ApplicationMenu.swift */; };
+		D63C1E8A2ABE135D00166AED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D63C1E782AB384F400166AED /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -136,8 +136,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D63C1E842ABBE52800166AED /* goofy.mp3 in Resources */,
+				D63C1E8A2ABE135D00166AED /* Assets.xcassets in Resources */,
 				D63C1E7C2AB384F400166AED /* Preview Assets.xcassets in Resources */,
-				D63C1E792AB384F400166AED /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +275,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Focus/Focus.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -304,6 +305,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Focus/Focus.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
