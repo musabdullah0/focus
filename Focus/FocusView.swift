@@ -6,130 +6,48 @@
 //
 
 import SwiftUI
+import AppKit
 import Cocoa
-import AVFoundation
 
-
-enum TimerType: String, CaseIterable {
-    case pomodoro = "Pomodoro"
-    case shortbreak = "Short Break"
-    case longbreak = "Long Break"
+extension Color {
+    public static var bgBlue: Color {
+        return Color(NSColor(red: 20/255, green: 30/255, blue: 70/255, alpha: 1.0))
+    }
+    
+    public static var darkRed: Color {
+        return Color(NSColor(red: 199/255, green: 0/255, blue: 57/255, alpha: 1.0))
+    }
+    
+    public static var lightRed: Color {
+        return Color(NSColor(red: 255/255, green: 105/255, blue: 105/255, alpha: 1.0))
+    }
+    
+    public static var beige: Color {
+        return Color(NSColor(red: 255/255, green: 245/255, blue: 224/255, alpha: 1.0))
+    }
+}
+extension View {
+    func border(_ color: Color, width: CGFloat, cornerRadius: CGFloat) -> some View {
+        overlay(RoundedRectangle(cornerRadius: cornerRadius).stroke(color, lineWidth: width))
+    }
 }
 
-/*
- there are 3 different session
- 1. 25 min focus
- 2.  5 min break
- 3. 10 min break
- */
-class PomodoroModel: ObservableObject {
-    @Published var time = "25:00"
-    @Published var state = "idle"
-    @Published var buttonText = "start"
-    private var audioPlayer: AVAudioPlayer?
+struct BasicButtonStyle: ButtonStyle {
+    var bgColor: Color
+    var fgColor: Color
     
-    // 0=pomodoro, 1=short_break, 2=long_break
-    @Published var timerType: TimerType = .pomodoro
-    
-    private var secondsLeft = 25*60
-    private var timer: Timer?
-    
-    init() {
-        self.time = "25:00"
-        self.state = "idle"
-        self.buttonText = "start"
-        self.secondsLeft = 25*60
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .padding([.vertical], 10)
+            .padding([.horizontal], 20)
+            .background(bgColor)
+            .foregroundStyle(fgColor)
+            .opacity(configuration.isPressed ? 0.7 : 1)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+            .contentShape(RoundedRectangle(cornerRadius: 20))
     }
-    
-    func updateTime() {
-        self.time = self.timeText()
-        AppDelegate.instance.statusBarItem.button?.title = self.timeText()
-    }
-    
-    func start() {
-        print("starting timer with \(self.secondsLeft) sec left")
-        self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (Timer) in
-            if self.secondsLeft > 0 {
-                print("\(self.secondsLeft) sec left")
-                self.secondsLeft -= 1
-                self.updateTime()
-            } else {
-                self.playSound()
-                Timer.invalidate()
-            }
-        }
-        /*
-         https://stackoverflow.com/questions/27997485/nstimer-not-firing-when-nsmenu-is-open-in-swift
-         */
-        RunLoop.main.add(self.timer!, forMode: .common)
-
-        if self.timerType == .pomodoro {
-            self.state = "focus"
-        } else if self.timerType == .shortbreak {
-            self.state = "break"
-        } else if self.timerType == .longbreak {
-            self.state = "chill"
-        }
-        
-        self.buttonText = "pause"
-    }
-    
-    func pause() {
-        guard let timer = self.timer else {return}
-        timer.invalidate()
-        self.state = "idle"
-        self.buttonText = "start"
-    }
-    
-    func statusText() -> String {
-        let messages = [
-            "focus": "time to work 🤓",
-            "idle": "lazy ahh boi 😡",
-            "break": "chill time 😎",
-            "chill": "touch some grass 🚶🏽‍♂️"
-        ]
-        if let status = messages[self.state] {
-            return status
-        }
-        return "wyd 🤨"
-    }
-    
-    func timeText() -> String {
-        return String(format: "%d:%02d", secondsLeft / 60, secondsLeft % 60)
-    }
-    
-    func setTimerType(type: TimerType) {
-        if let timer = self.timer {
-            timer.invalidate()
-            self.state = "idle"
-            self.buttonText = "start"
-        }
-        
-        if type == .pomodoro {
-            self.secondsLeft = 25*60
-        } else if type == .shortbreak {
-            self.secondsLeft = 5*60
-        } else if type == .longbreak {
-            self.secondsLeft = 10*60
-        }
-        self.updateTime()
-    }
-    
-    func playSound() {
-        guard let path = Bundle.main.path(forResource: "goofy", ofType:"mp3") else {
-            return }
-        let url = URL(fileURLWithPath: path)
-
-        do {
-            self.audioPlayer = try AVAudioPlayer(contentsOf: url)
-            self.audioPlayer?.play()
-            
-        } catch let error {
-            print(error.localizedDescription)
-        }
-    }
-    
 }
+
 
 struct FocusView: View {
     @StateObject var model = PomodoroModel()
@@ -146,15 +64,41 @@ struct FocusView: View {
                 print("changed to \(value)")
                 model.setTimerType(type: value)
             })
-            Text(model.time)
-                .font(.system(.largeTitle, design: .rounded))
-                .fontWeight(.black)
-            Text(model.statusText())
-                .font(.system(.title3, design: .rounded))
+//            Spacer()
             
-            Button{
-                print("clicked: \(model.buttonText)")
-                
+//            SegmentedPickerView(segments: ["a", "b", "c"], selected: $model.timerType) { clicked in
+//                print("clicked \(clicked)")
+//                model.setTimerType(type: clicked)
+//            }
+                        
+            CircularProgressView(progress: model.progress, timeText: model.time)
+            
+//            Spacer()
+            
+//            Button("cancel") {
+//                print("clicked cancel")
+//            }
+//                .buttonStyle(BasicButtonStyle(bgColor: Color(nsColor: NSColor.darkGray), fgColor: Color.beige))
+            
+//            Button("start") {
+//                print("clicked start")
+//            }
+//                .buttonStyle(BasicButtonStyle(bgColor: Color.beige, fgColor: Color.bgBlue))
+            
+//            Button{
+//                print("clicked: \(model.buttonText)")
+//
+//                if (model.state == "idle") {
+//                    model.start()
+//                } else {
+//                    model.pause()
+//                }
+//            } label: {
+//                Text(model.buttonText)
+//            }
+//            .buttonStyle(.borderedProminent)
+            
+            Button {
                 if (model.state == "idle") {
                     model.start()
                 } else {
@@ -162,23 +106,34 @@ struct FocusView: View {
                 }
             } label: {
                 Text(model.buttonText)
-                    .font(.system(.title3, design: .rounded))
             }
-            .buttonStyle(.borderedProminent)
-            .controlSize(.large)
+                .buttonStyle(BorderedProminentButtonStyle())
             
         }
         .padding()
-        .frame(width: 300, height: 150)
-        .background(Color.indigo)
+        .frame(width: 300, height: 300)
+        .background(Color.bgBlue)
     }
     
     
+}
+
+struct FilledButton: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration
+            .label
+            .foregroundColor(configuration.isPressed ? .gray : Color.bgBlue)
+            .padding(.vertical, 10)
+            .padding(.horizontal, 20)
+            .background(Color.beige)
+            .cornerRadius(10)
+    }
 }
     
 
 struct FocusView_Previews: PreviewProvider {
     static var previews: some View {
         FocusView()
+            .frame(width: 300, height: 300)
     }
 }

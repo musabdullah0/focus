@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+
 class ApplicationMenu: NSObject {
     let menu = NSMenu()
     
@@ -15,7 +16,7 @@ class ApplicationMenu: NSObject {
         let focusView = FocusView()
         
         let topView = NSHostingController(rootView: focusView)
-        topView.view.frame.size = CGSize(width: 300, height: 150)
+        topView.view.frame.size = CGSize(width: 300, height: 250)
         
         let customMenuItem = NSMenuItem()
         customMenuItem.view = topView.view
