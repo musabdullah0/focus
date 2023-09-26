@@ -1,0 +1,29 @@
+{
+  "name": "TTSegmentedControl",
+  "platforms": {
+    "ios": "13.0"
+  },
+  "license": "MIT",
+  "summary": "An elegant, animated and customizable segmented control for iOS.",
+  "requires_arc": true,
+  "version": "0.5.0",
+  "authors": {
+    "Igor Dumitru": "igor.dumitru@tapptitude.com"
+  },
+  "homepage": "https://tapptitude.com/",
+  "frameworks": [
+    "UIKit",
+    "SwiftUI"
+  ],
+  "source": {
+    "git": "https://github.com/dumitruigor/TTSegmentedControl.git",
+    "tag": "0.5.0"
+  },
+  "source_files": [
+    "Sources/TTSegmentedControl/*.{swift}",
+    "Sources/TTSegmentedControl/Models/*.{swift}",
+    "Sources/TTSegmentedControl/Helpers/*.{swift}",
+    "Sources/TTSegmentedControl/Extensions/*.{swift}",
+    "Sources/TTSegmentedControl/Builders/*.{swift}"
+  ]
+}

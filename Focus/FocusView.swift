@@ -32,23 +32,6 @@ extension View {
     }
 }
 
-struct BasicButtonStyle: ButtonStyle {
-    var bgColor: Color
-    var fgColor: Color
-    
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .padding([.vertical], 10)
-            .padding([.horizontal], 20)
-            .background(bgColor)
-            .foregroundStyle(fgColor)
-            .opacity(configuration.isPressed ? 0.7 : 1)
-            .clipShape(RoundedRectangle(cornerRadius: 10))
-            .contentShape(RoundedRectangle(cornerRadius: 20))
-    }
-}
-
-
 struct FocusView: View {
     @StateObject var model = PomodoroModel()
     
@@ -64,50 +47,37 @@ struct FocusView: View {
                 print("changed to \(value)")
                 model.setTimerType(type: value)
             })
-//            Spacer()
+
+            ZStack {
+                CircularProgressView(progress: model.progress, timeText: model.time)
+                
+                Button {
+                    if (model.state == "idle") {
+                        model.start()
+                    } else {
+                        model.pause()
+                    }
+                } label: {
+                    Image(systemName: model.state == "idle" ? "play.circle" : "pause.circle")
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                        .foregroundColor(Color.beige)
+                }
+                .buttonStyle(.borderless)
+                .offset(y: 35)
+            }
+
             
-//            SegmentedPickerView(segments: ["a", "b", "c"], selected: $model.timerType) { clicked in
-//                print("clicked \(clicked)")
-//                model.setTimerType(type: clicked)
-//            }
-                        
-            CircularProgressView(progress: model.progress, timeText: model.time)
             
-//            Spacer()
-            
-//            Button("cancel") {
-//                print("clicked cancel")
-//            }
-//                .buttonStyle(BasicButtonStyle(bgColor: Color(nsColor: NSColor.darkGray), fgColor: Color.beige))
-            
-//            Button("start") {
-//                print("clicked start")
-//            }
-//                .buttonStyle(BasicButtonStyle(bgColor: Color.beige, fgColor: Color.bgBlue))
-            
-//            Button{
-//                print("clicked: \(model.buttonText)")
-//
+//            Button(model.buttonText) {
 //                if (model.state == "idle") {
 //                    model.start()
 //                } else {
 //                    model.pause()
 //                }
-//            } label: {
-//                Text(model.buttonText)
 //            }
-//            .buttonStyle(.borderedProminent)
             
-            Button {
-                if (model.state == "idle") {
-                    model.start()
-                } else {
-                    model.pause()
-                }
-            } label: {
-                Text(model.buttonText)
-            }
-                .buttonStyle(BorderedProminentButtonStyle())
+            
             
         }
         .padding()

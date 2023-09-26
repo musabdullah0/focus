@@ -13,6 +13,9 @@
 		D63C1E842ABBE52800166AED /* goofy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D63C1E832ABBE52800166AED /* goofy.mp3 */; };
 		D63C1E862ABBE85A00166AED /* ApplicationMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63C1E852ABBE85A00166AED /* ApplicationMenu.swift */; };
 		D63C1E8A2ABE135D00166AED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D63C1E782AB384F400166AED /* Assets.xcassets */; };
+		D63C1E8C2AC109FF00166AED /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63C1E8B2AC109FF00166AED /* CircularProgressView.swift */; };
+		D63C1E8E2AC1183D00166AED /* PomodoroModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63C1E8D2AC1183D00166AED /* PomodoroModel.swift */; };
+		D63C1E902AC1F1C000166AED /* SegmentedPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63C1E8F2AC1F1C000166AED /* SegmentedPickerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +28,9 @@
 		D63C1E832ABBE52800166AED /* goofy.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = goofy.mp3; sourceTree = "<group>"; };
 		D63C1E852ABBE85A00166AED /* ApplicationMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationMenu.swift; sourceTree = "<group>"; };
 		D63C1E872ABBE9ED00166AED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D63C1E8B2AC109FF00166AED /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
+		D63C1E8D2AC1183D00166AED /* PomodoroModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroModel.swift; sourceTree = "<group>"; };
+		D63C1E8F2AC1F1C000166AED /* SegmentedPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedPickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +67,9 @@
 				D63C1E742AB384F000166AED /* FocusApp.swift */,
 				D63C1E852ABBE85A00166AED /* ApplicationMenu.swift */,
 				D63C1E762AB384F000166AED /* FocusView.swift */,
+				D63C1E8F2AC1F1C000166AED /* SegmentedPickerView.swift */,
+				D63C1E8D2AC1183D00166AED /* PomodoroModel.swift */,
+				D63C1E8B2AC109FF00166AED /* CircularProgressView.swift */,
 				D63C1E782AB384F400166AED /* Assets.xcassets */,
 				D63C1E7D2AB384F400166AED /* Focus.entitlements */,
 				D63C1E832ABBE52800166AED /* goofy.mp3 */,
@@ -150,7 +159,10 @@
 			files = (
 				D63C1E772AB384F000166AED /* FocusView.swift in Sources */,
 				D63C1E862ABBE85A00166AED /* ApplicationMenu.swift in Sources */,
+				D63C1E8E2AC1183D00166AED /* PomodoroModel.swift in Sources */,
+				D63C1E8C2AC109FF00166AED /* CircularProgressView.swift in Sources */,
 				D63C1E752AB384F000166AED /* FocusApp.swift in Sources */,
+				D63C1E902AC1F1C000166AED /* SegmentedPickerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
