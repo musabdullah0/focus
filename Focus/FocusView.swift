@@ -10,16 +10,16 @@ import AppKit
 import Cocoa
 
 extension Color {
-    public static var bgBlue: Color {
-        return Color(NSColor(red: 20/255, green: 30/255, blue: 70/255, alpha: 1.0))
+    public static var darkBG: Color {
+        return Color(NSColor(red: 37/255, green: 36/255, blue: 34/255, alpha: 1.0))
     }
     
     public static var darkRed: Color {
         return Color(NSColor(red: 199/255, green: 0/255, blue: 57/255, alpha: 1.0))
     }
     
-    public static var lightRed: Color {
-        return Color(NSColor(red: 255/255, green: 105/255, blue: 105/255, alpha: 1.0))
+    public static var tangerine: Color {
+        return Color(NSColor(red: 235/255, green: 94/255, blue: 40/255, alpha: 1.0))
     }
     
     public static var beige: Color {
@@ -37,16 +37,27 @@ struct FocusView: View {
     
     var body: some View {
         VStack {
-            Picker("", selection: $model.timerType) {
-                ForEach(TimerType.allCases, id: \.self) { option in
-                    Text(option.rawValue)
-                }
+//            Picker("", selection: $model.timerType) {
+//                ForEach(TimerType.allCases, id: \.self) { option in
+//                    Text(option.rawValue)
+//                }
+//            }
+//            .pickerStyle(SegmentedPickerStyle())
+//            .onChange(of: model.timerType, perform: { (value) in
+//                print("changed to \(value)")
+//                model.setTimerType(type: value)
+//            })
+            
+            CustomSegmentedPicker(TimerType.allCases, selectedItem: $model.timerType, onClick: { type in
+                print("clicked \(type)")
+                model.setTimerType(type: type)
+            }) { timerType in
+                Text(timerType.rawValue)
+                    .foregroundColor(model.timerType == timerType ? .darkBG : .beige)
+                    .padding(.vertical, 10)
+                    .padding(.horizontal, 15)
+                    .font(.caption)
             }
-            .pickerStyle(SegmentedPickerStyle())
-            .onChange(of: model.timerType, perform: { (value) in
-                print("changed to \(value)")
-                model.setTimerType(type: value)
-            })
 
             ZStack {
                 CircularProgressView(progress: model.progress, timeText: model.time)
@@ -61,43 +72,20 @@ struct FocusView: View {
                     Image(systemName: model.state == "idle" ? "play.circle" : "pause.circle")
                         .resizable()
                         .frame(width: 30, height: 30)
-                        .foregroundColor(Color.beige)
+                        .foregroundColor(Color.beige.opacity(0.7))
                 }
                 .buttonStyle(.borderless)
                 .offset(y: 35)
             }
-
-            
-            
-//            Button(model.buttonText) {
-//                if (model.state == "idle") {
-//                    model.start()
-//                } else {
-//                    model.pause()
-//                }
-//            }
-            
-            
+            .padding()
             
         }
         .padding()
         .frame(width: 300, height: 300)
-        .background(Color.bgBlue)
+        .background(Color.darkBG)
     }
     
     
-}
-
-struct FilledButton: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        configuration
-            .label
-            .foregroundColor(configuration.isPressed ? .gray : Color.bgBlue)
-            .padding(.vertical, 10)
-            .padding(.horizontal, 20)
-            .background(Color.beige)
-            .cornerRadius(10)
-    }
 }
     
 

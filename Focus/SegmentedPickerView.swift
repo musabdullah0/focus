@@ -10,7 +10,7 @@ import SwiftUI
 
 struct SegmentedPickerView: View {
     
-    let segments: [String]
+    let segments: [TimerType]
     @Binding var selected: TimerType
     
     var onClick: (TimerType) -> Void
@@ -25,11 +25,12 @@ struct SegmentedPickerView: View {
                         Text(option.rawValue)
                             .font(.footnote)
                             .padding(.horizontal, 10)
-                            .foregroundColor(selected == option ? Color.bgBlue : Color.beige)
+                            .foregroundColor(selected == option ? Color.darkBG : Color.beige)
+                            .tag(option)
                             
                     }
                 }
-                .background(self.selected == option ? Color.beige : Color.bgBlue)
+                .background(self.selected == option ? Color.beige : Color.darkBG)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
             }
         }
@@ -38,12 +39,11 @@ struct SegmentedPickerView: View {
 
 struct ContentView: View {
 
-    var segments = ["pomodoro", "short break", "long break"]
     @State var selected = TimerType.pomodoro
 
     var body: some View {
         VStack {
-            SegmentedPickerView(segments: segments, selected: $selected) { order in
+            SegmentedPickerView(segments: TimerType.allCases, selected: $selected) { order in
                 print("clicked \(order)")
             }
         }

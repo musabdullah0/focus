@@ -42,16 +42,14 @@ enum TimerType: String, CaseIterable {
  3. 10 min break
  */
 class PomodoroModel: ObservableObject {
-    @Published var time = "25:00"
-    @Published var state = "idle"
-    @Published var buttonText = "start"
+    @Published var time: String
+    @Published var state: String
+    @Published var buttonText: String
     @Published var progress: Float = 0.0
     private var audioPlayer: AVAudioPlayer?
-    
-    // 0=pomodoro, 1=short_break, 2=long_break
     @Published var timerType: TimerType = .pomodoro
     
-    private var secondsLeft = 25*60
+    private var secondsLeft: Int
     private var timer: Timer?
     
     init() {
@@ -65,10 +63,11 @@ class PomodoroModel: ObservableObject {
         self.time = self.timeText()
         AppDelegate.instance.statusBarItem.button?.title = self.timeText()
         
-        let done = self.timerType.duration - self.secondsLeft
-        print("\(done) / \(self.timerType.duration)")
+        let done = max(self.timerType.duration - self.secondsLeft, 0)
         self.progress = Float(done) / Float(self.timerType.duration)
-        print("progress=\(self.progress)")
+        
+        print("\(done) / \( Float(self.timerType.duration)) = \(self.progress)")
+        
     }
     
     func start() {
@@ -126,7 +125,7 @@ class PomodoroModel: ObservableObject {
             self.state = "idle"
             self.buttonText = "start"
         }
-        
+        self.timerType = type
         self.secondsLeft = type.duration
         self.updateTime()
     }

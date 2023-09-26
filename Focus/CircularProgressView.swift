@@ -11,20 +11,19 @@ struct CircularProgressView: View {
     var progress: Float
     var timeText: String
     let lineWidth = CGFloat(8)
+    let lineColor: Color = Color.tangerine
     
     var body: some View {
         ZStack {
             Circle()
                 .stroke(
-//                    Color.pink.opacity(0.5),
-                    Color.darkRed.opacity(0.5),
+                    lineColor.opacity(0.5),
                     lineWidth: lineWidth
                 )
             Circle()
                 .trim(from: 0.0, to: CGFloat(min(progress, 1.0)))
                 .stroke(
-//                    Color.pink,
-                    Color.darkRed,
+                    lineColor,
                     style: StrokeStyle(
                         lineWidth: lineWidth,
                         lineCap: .round
@@ -34,7 +33,8 @@ struct CircularProgressView: View {
                 .animation(.linear(duration: 1.0), value: progress)
             
             Text(timeText)
-                .font(.system(.title, design: .rounded))
+                .font(.system(.largeTitle, design: .rounded))
+                .foregroundColor(Color.beige.opacity(0.8))
 
         }
         .frame(width: 120, height: 120)
