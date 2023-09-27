@@ -52,13 +52,13 @@ struct FocusView: View {
                 CircularProgressView(progress: model.progress, timeText: model.time)
                 
                 Button {
-                    if (model.state == "idle") {
+                    if (!model.isRunning) {
                         model.start()
                     } else {
                         model.pause()
                     }
                 } label: {
-                    Image(systemName: model.state == "idle" ? "play.circle" : "pause.circle")
+                    Image(systemName: !model.isRunning ? "play.circle" : "pause.circle")
                         .resizable()
                         .frame(width: 30, height: 30)
                         .foregroundColor(Color.beige.opacity(0.7))

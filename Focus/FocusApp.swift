@@ -17,25 +17,43 @@ struct FocusApp: App {
     }
 }
 
+class CustomNSMenu: NSMenu, NSMenuDelegate {
+    public var isVisible: Bool!
+    
+    func menuWillOpen(_ menu: NSMenu) {
+        print("opening")
+        isVisible = true
+      }
+    
+    func menuDidClose(_ menu: NSMenu) {
+        print("closing")
+        isVisible = false
+      }
+}
+
 class AppDelegate: NSObject, NSApplicationDelegate {
     static private(set) var instance: AppDelegate!
     lazy var statusBarItem = NSStatusBar.system.statusItem(withLength: 35)
     let menu = ApplicationMenu()
-    
+    let nsMenu = CustomNSMenu()
+    let focusView = FocusView()
     
     func applicationDidFinishLaunching(_ notification: Notification) {
         AppDelegate.instance = self
-        statusBarItem.menu = menu.createMenu()
+        statusBarItem.menu = menu.createMenu(nsMenu: nsMenu, focusView: focusView)
+        statusBarItem.menu?.delegate = nsMenu
         statusBarItem.button?.title = "25:00"
     }
     
     @objc func openMenu() {
-        NSApp.activate(ignoringOtherApps: true)
-
-        // got from p0deje/Maccy
-        // simulates mouse click on NSStatusBarItem to open menu after timer is done
-        Timer.scheduledTimer(withTimeInterval: 0.04, repeats: false) { _ in
-            self.statusBarItem.button?.performClick(self)
+        if !nsMenu.isVisible {
+            NSApp.activate(ignoringOtherApps: true)
+            
+            // got from p0deje/Maccy
+            // simulates mouse click on NSStatusBarItem to open menu after timer is done
+            Timer.scheduledTimer(withTimeInterval: 0.04, repeats: false) { _ in
+                self.statusBarItem.button?.performClick(self)
+            }
         }
         
     }

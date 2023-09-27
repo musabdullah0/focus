@@ -30,7 +30,7 @@ struct CircularProgressView: View {
                     )
                 )
                 .rotationEffect(.degrees(-90))
-                .animation(.linear(duration: 1.0), value: progress)
+                .animation(.linear(duration: 0.1), value: progress)
             
             Text(timeText)
                 .font(.system(.largeTitle, design: .rounded))

@@ -43,95 +43,78 @@ enum TimerType: String, CaseIterable {
  */
 class PomodoroModel: ObservableObject {
     @Published var time: String
-    @Published var state: String
+    @Published var isRunning: Bool
     @Published var buttonText: String
     @Published var progress: Float = 0.0
     private var audioPlayer: AVAudioPlayer?
     @Published var timerType: TimerType = .pomodoro
     
-    private var secondsLeft: Int
+    private var secondsLeft: Float
     private var timer: Timer?
     
     init() {
         self.time = "25:00"
-        self.state = "idle"
         self.buttonText = "start"
-        self.secondsLeft = 25*60
+        self.secondsLeft = 25.0 * 60.0
+        self.isRunning = false
     }
     
     func updateTime() {
         self.time = self.timeText()
         AppDelegate.instance.statusBarItem.button?.title = self.timeText()
         
-        let done = max(self.timerType.duration - self.secondsLeft, 0)
+        let done = max(Float(self.timerType.duration) - self.secondsLeft, 0.0)
         self.progress = Float(done) / Float(self.timerType.duration)
         
-        print("\(done) / \( Float(self.timerType.duration)) = \(self.progress)")
+        // checks if isInteger to run every second
+        if done == floor(done) {
+//            print(AppDelegate.instance.statusBarItem.button.isvis)
+        }
         
     }
     
     func start() {
         print("starting timer with \(self.secondsLeft) sec left")
-        self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (Timer) in
-            if self.secondsLeft > 0 {
-                print("\(self.secondsLeft) sec left")
-                self.secondsLeft -= 1
+        self.timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { (Timer) in
+            if self.secondsLeft > 0.0 {
+                self.secondsLeft -= 0.1
                 self.updateTime()
             } else {
-                self.playSound()
                 Timer.invalidate()
+                AppDelegate.instance.openMenu()
+                self.playSound()
             }
         }
         RunLoop.main.add(self.timer!, forMode: .common)
-
-        if self.timerType == .pomodoro {
-            self.state = "focus"
-        } else if self.timerType == .shortbreak {
-            self.state = "break"
-        } else if self.timerType == .longbreak {
-            self.state = "chill"
-        }
         
+        self.isRunning = true
         self.buttonText = "pause"
     }
     
     func pause() {
         guard let timer = self.timer else {return}
         timer.invalidate()
-        self.state = "idle"
+        self.isRunning = false
         self.buttonText = "start"
     }
     
-    func statusText() -> String {
-        let messages = [
-            "focus": "time to work 🤓",
-            "idle": "lazy ahh boi 😡",
-            "break": "chill time 😎",
-            "chill": "touch some grass 🚶🏽‍♂️"
-        ]
-        if let status = messages[self.state] {
-            return status
-        }
-        return "wyd 🤨"
-    }
-    
     func timeText() -> String {
-        return String(format: "%d:%02d", secondsLeft / 60, secondsLeft % 60)
+        let secsLeft = Int(ceil(self.secondsLeft))
+        return String(format: "%d:%02d", secsLeft / 60, secsLeft % 60)
     }
     
     func setTimerType(type: TimerType) {
         if let timer = self.timer {
             timer.invalidate()
-            self.state = "idle"
+            self.isRunning = false
             self.buttonText = "start"
         }
         self.timerType = type
-        self.secondsLeft = type.duration
+        self.secondsLeft = Float(type.duration)
         self.updateTime()
     }
     
     func playSound() {
-        AppDelegate.instance.openMenu()
         guard let path = Bundle.main.path(forResource: "ringer", ofType:"mp3") else {
             return }
         let url = URL(fileURLWithPath: path)
