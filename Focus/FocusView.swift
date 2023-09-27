@@ -37,17 +37,11 @@ struct FocusView: View {
     
     var body: some View {
         VStack {
-            CustomSegmentedPicker(TimerType.allCases, selectedItem: $model.timerType, onClick: { type in
+            CustomSegmentedPicker(selectedItem: $model.timerType) { type in
                 print("clicked \(type)")
                 model.setTimerType(type: type)
-            }) { timerType in
-                Text(timerType.rawValue)
-                    .foregroundColor(model.timerType == timerType ? .darkBG : .beige)
-                    .padding(.vertical, 10)
-                    .padding(.horizontal, 15)
-                    .font(.body)
             }
-
+            
             ZStack {
                 CircularProgressView(progress: model.progress, timeText: model.time)
                 

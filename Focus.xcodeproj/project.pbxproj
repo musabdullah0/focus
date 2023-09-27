@@ -15,7 +15,6 @@
 		D63C1E8A2ABE135D00166AED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D63C1E782AB384F400166AED /* Assets.xcassets */; };
 		D63C1E8C2AC109FF00166AED /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63C1E8B2AC109FF00166AED /* CircularProgressView.swift */; };
 		D63C1E8E2AC1183D00166AED /* PomodoroModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63C1E8D2AC1183D00166AED /* PomodoroModel.swift */; };
-		D63C1E902AC1F1C000166AED /* SegmentedPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63C1E8F2AC1F1C000166AED /* SegmentedPickerView.swift */; };
 		D6FCEE382AC349B4004B9F1E /* CustomSegmentedPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FCEE372AC349B4004B9F1E /* CustomSegmentedPicker.swift */; };
 		D6FCEE3A2AC3BBF1004B9F1E /* ringer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D6FCEE392AC3BBF1004B9F1E /* ringer.mp3 */; };
 		D6FCEE3D2AC4D36E004B9F1E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6FCEE3C2AC4D36E004B9F1E /* AVFoundation.framework */; };
@@ -33,7 +32,6 @@
 		D63C1E872ABBE9ED00166AED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D63C1E8B2AC109FF00166AED /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		D63C1E8D2AC1183D00166AED /* PomodoroModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroModel.swift; sourceTree = "<group>"; };
-		D63C1E8F2AC1F1C000166AED /* SegmentedPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedPickerView.swift; sourceTree = "<group>"; };
 		D6FCEE372AC349B4004B9F1E /* CustomSegmentedPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedPicker.swift; sourceTree = "<group>"; };
 		D6FCEE392AC3BBF1004B9F1E /* ringer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ringer.mp3; sourceTree = "<group>"; };
 		D6FCEE3C2AC4D36E004B9F1E /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -75,7 +73,6 @@
 				D63C1E742AB384F000166AED /* FocusApp.swift */,
 				D63C1E852ABBE85A00166AED /* ApplicationMenu.swift */,
 				D63C1E762AB384F000166AED /* FocusView.swift */,
-				D63C1E8F2AC1F1C000166AED /* SegmentedPickerView.swift */,
 				D6FCEE372AC349B4004B9F1E /* CustomSegmentedPicker.swift */,
 				D63C1E8D2AC1183D00166AED /* PomodoroModel.swift */,
 				D63C1E8B2AC109FF00166AED /* CircularProgressView.swift */,
@@ -182,7 +179,6 @@
 				D63C1E8C2AC109FF00166AED /* CircularProgressView.swift in Sources */,
 				D6FCEE382AC349B4004B9F1E /* CustomSegmentedPicker.swift in Sources */,
 				D63C1E752AB384F000166AED /* FocusApp.swift in Sources */,
-				D63C1E902AC1F1C000166AED /* SegmentedPickerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,7 +10,7 @@ import Cocoa
 import AVFoundation
 
 
-enum TimerType: String, CaseIterable {
+enum TimerType: String, Equatable, CaseIterable {
     case pomodoro = "Pomodoro"
     case shortbreak = "Short Break"
     case longbreak = "Long Break"
@@ -20,6 +20,14 @@ enum TimerType: String, CaseIterable {
         case .pomodoro: return 0
         case .shortbreak: return 1
         case .longbreak: return 2
+        }
+    }
+    
+    var displayText: String {
+        switch self {
+        case .pomodoro: return "pomodoro"
+        case .shortbreak: return "short break"
+        default: return "long break"
         }
     }
     
