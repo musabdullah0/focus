@@ -6,8 +6,9 @@
 //
 
 import Foundation
-import AVFoundation
 import Cocoa
+import AVFoundation
+
 
 enum TimerType: String, CaseIterable {
     case pomodoro = "Pomodoro"
@@ -46,17 +47,25 @@ class PomodoroModel: ObservableObject {
     @Published var isRunning: Bool
     @Published var buttonText: String
     @Published var progress: Float = 0.0
-    private var audioPlayer: AVAudioPlayer?
     @Published var timerType: TimerType = .pomodoro
     
     private var secondsLeft: Float
     private var timer: Timer?
+    private var audioPlayer: AVAudioPlayer?
     
     init() {
         self.time = "25:00"
         self.buttonText = "start"
         self.secondsLeft = 25.0 * 60.0
         self.isRunning = false
+        
+        // set up audio player
+        let sound = Bundle.main.path(forResource: "ringer", ofType:"mp3")
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
+        } catch let error {
+            print(error.localizedDescription)
+        }
     }
     
     func updateTime() {
@@ -65,12 +74,6 @@ class PomodoroModel: ObservableObject {
         
         let done = max(Float(self.timerType.duration) - self.secondsLeft, 0.0)
         self.progress = Float(done) / Float(self.timerType.duration)
-        
-        // checks if isInteger to run every second
-        if done == floor(done) {
-//            print(AppDelegate.instance.statusBarItem.button.isvis)
-        }
-        
     }
     
     func start() {
@@ -115,17 +118,7 @@ class PomodoroModel: ObservableObject {
     }
     
     func playSound() {
-        guard let path = Bundle.main.path(forResource: "ringer", ofType:"mp3") else {
-            return }
-        let url = URL(fileURLWithPath: path)
-
-        do {
-            self.audioPlayer = try AVAudioPlayer(contentsOf: url)
-            self.audioPlayer?.play()
-            
-        } catch let error {
-            print(error.localizedDescription)
-        }
+        audioPlayer?.play()
     }
     
 }

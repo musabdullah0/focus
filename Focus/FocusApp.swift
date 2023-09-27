@@ -21,12 +21,10 @@ class CustomNSMenu: NSMenu, NSMenuDelegate {
     public var isVisible: Bool!
     
     func menuWillOpen(_ menu: NSMenu) {
-        print("opening")
         isVisible = true
       }
     
     func menuDidClose(_ menu: NSMenu) {
-        print("closing")
         isVisible = false
       }
 }
