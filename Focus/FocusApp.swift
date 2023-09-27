@@ -30,7 +30,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @objc func openMenu() {
-        print("trying to open menu")
         NSApp.activate(ignoringOtherApps: true)
 
         // got from p0deje/Maccy
