@@ -35,6 +35,7 @@ struct CircularProgressView: View {
             Text(timeText)
                 .font(.system(.largeTitle, design: .rounded))
                 .foregroundColor(Color.beige.opacity(0.8))
+                .offset(y: -15)
 
         }
         .frame(width: 120, height: 120)

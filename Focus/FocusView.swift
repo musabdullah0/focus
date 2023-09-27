@@ -37,17 +37,6 @@ struct FocusView: View {
     
     var body: some View {
         VStack {
-//            Picker("", selection: $model.timerType) {
-//                ForEach(TimerType.allCases, id: \.self) { option in
-//                    Text(option.rawValue)
-//                }
-//            }
-//            .pickerStyle(SegmentedPickerStyle())
-//            .onChange(of: model.timerType, perform: { (value) in
-//                print("changed to \(value)")
-//                model.setTimerType(type: value)
-//            })
-            
             CustomSegmentedPicker(TimerType.allCases, selectedItem: $model.timerType, onClick: { type in
                 print("clicked \(type)")
                 model.setTimerType(type: type)
@@ -56,7 +45,7 @@ struct FocusView: View {
                     .foregroundColor(model.timerType == timerType ? .darkBG : .beige)
                     .padding(.vertical, 10)
                     .padding(.horizontal, 15)
-                    .font(.caption)
+                    .font(.body)
             }
 
             ZStack {
@@ -75,13 +64,13 @@ struct FocusView: View {
                         .foregroundColor(Color.beige.opacity(0.7))
                 }
                 .buttonStyle(.borderless)
-                .offset(y: 35)
+                .offset(y: 23)
             }
             .padding()
             
         }
         .padding()
-        .frame(width: 300, height: 300)
+//        .frame(width: 350, height: 220)
         .background(Color.darkBG)
     }
     
@@ -92,6 +81,6 @@ struct FocusView: View {
 struct FocusView_Previews: PreviewProvider {
     static var previews: some View {
         FocusView()
-            .frame(width: 300, height: 300)
+//            .frame(width: 300, height: 300)
     }
 }

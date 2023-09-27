@@ -10,39 +10,38 @@ import SwiftUI
 
 
 class ApplicationMenu: NSObject {
-    let menu = NSMenu()
+    let nsMenu = NSMenu()
+    let focusView = FocusView()
     
     func createMenu() -> NSMenu {
-        let focusView = FocusView()
-        
         let topView = NSHostingController(rootView: focusView)
-        topView.view.frame.size = CGSize(width: 300, height: 250)
+        topView.view.frame.size = CGSize(width: 350, height: 220)
         
         let customMenuItem = NSMenuItem()
         customMenuItem.view = topView.view
-        menu.addItem(customMenuItem)
-        menu.addItem(NSMenuItem.separator())
+        nsMenu.addItem(customMenuItem)
+        nsMenu.addItem(NSMenuItem.separator())
         
         let aboutMenuItem = NSMenuItem(title: "About Focus Timer",
                                        action: #selector(about),
                                        keyEquivalent: "")
         aboutMenuItem.target = self
-        menu.addItem(aboutMenuItem)
+        nsMenu.addItem(aboutMenuItem)
         
         let webLinkMenuItem = NSMenuItem(title: "Musab Abdullah",
                                        action: #selector(openLink),
                                        keyEquivalent: "")
         webLinkMenuItem.target = self
         webLinkMenuItem.representedObject = "https://musababdullah.webflow.io"
-        menu.addItem(webLinkMenuItem)
+        nsMenu.addItem(webLinkMenuItem)
         
         let quitMenuItem = NSMenuItem(title: "Quit",
                                        action: #selector(quit),
                                        keyEquivalent: "q")
         quitMenuItem.target = self
-        menu.addItem(quitMenuItem)
+        nsMenu.addItem(quitMenuItem)
         
-        return menu
+        return nsMenu
     }
     
     @objc func about(sender: NSMenuItem) {

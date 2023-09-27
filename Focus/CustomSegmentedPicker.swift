@@ -52,7 +52,7 @@ public struct CustomSegmentedPicker<T: Equatable, Content: View>: View {
                 // For each selectable option in the items array
                 Button(action: {
                     onClick(self.items[index])
-                    withAnimation(.linear) {
+                    withAnimation(.easeIn(duration: 1.0)) {
                         self.selectedItem = self.items[index]
                     }
                 },
@@ -77,7 +77,7 @@ struct CustomSegmentedPickerWrapper: View {
             Text(timerType.rawValue)
                 .foregroundColor(selected == timerType ? .darkBG : .beige)
                 .padding(.vertical, 10)
-                .padding(.horizontal, 15)
+                .padding(.horizontal, 10)
         }
         .frame(width: .infinity, height: 100)
     }

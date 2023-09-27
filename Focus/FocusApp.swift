@@ -19,7 +19,7 @@ struct FocusApp: App {
 
 class AppDelegate: NSObject, NSApplicationDelegate {
     static private(set) var instance: AppDelegate!
-    lazy var statusBarItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+    lazy var statusBarItem = NSStatusBar.system.statusItem(withLength: 35)
     let menu = ApplicationMenu()
     
     
@@ -29,5 +29,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusBarItem.button?.title = "25:00"
     }
     
+    @objc func openMenu() {
+        print("trying to open menu")
+        NSApp.activate(ignoringOtherApps: true)
+
+        // got from p0deje/Maccy
+        // simulates mouse click on NSStatusBarItem to open menu after timer is done
+        Timer.scheduledTimer(withTimeInterval: 0.04, repeats: false) { _ in
+            self.statusBarItem.button?.performClick(self)
+        }
+        
+    }
 }
 

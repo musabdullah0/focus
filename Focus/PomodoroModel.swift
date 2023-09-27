@@ -28,7 +28,7 @@ enum TimerType: String, CaseIterable {
             return 25*60
         case .shortbreak:
 //            return 5*60
-            return 30
+            return 5
         case .longbreak:
             return 10*60
         }
@@ -131,7 +131,8 @@ class PomodoroModel: ObservableObject {
     }
     
     func playSound() {
-        guard let path = Bundle.main.path(forResource: "goofy", ofType:"mp3") else {
+        AppDelegate.instance.openMenu()
+        guard let path = Bundle.main.path(forResource: "ringer", ofType:"mp3") else {
             return }
         let url = URL(fileURLWithPath: path)
 

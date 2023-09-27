@@ -17,6 +17,7 @@
 		D63C1E8E2AC1183D00166AED /* PomodoroModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63C1E8D2AC1183D00166AED /* PomodoroModel.swift */; };
 		D63C1E902AC1F1C000166AED /* SegmentedPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63C1E8F2AC1F1C000166AED /* SegmentedPickerView.swift */; };
 		D6FCEE382AC349B4004B9F1E /* CustomSegmentedPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FCEE372AC349B4004B9F1E /* CustomSegmentedPicker.swift */; };
+		D6FCEE3A2AC3BBF1004B9F1E /* ringer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D6FCEE392AC3BBF1004B9F1E /* ringer.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		D63C1E8D2AC1183D00166AED /* PomodoroModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroModel.swift; sourceTree = "<group>"; };
 		D63C1E8F2AC1F1C000166AED /* SegmentedPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedPickerView.swift; sourceTree = "<group>"; };
 		D6FCEE372AC349B4004B9F1E /* CustomSegmentedPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedPicker.swift; sourceTree = "<group>"; };
+		D6FCEE392AC3BBF1004B9F1E /* ringer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ringer.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 				D63C1E782AB384F400166AED /* Assets.xcassets */,
 				D63C1E7D2AB384F400166AED /* Focus.entitlements */,
 				D63C1E832ABBE52800166AED /* goofy.mp3 */,
+				D6FCEE392AC3BBF1004B9F1E /* ringer.mp3 */,
 				D63C1E7A2AB384F400166AED /* Preview Content */,
 			);
 			path = Focus;
@@ -150,6 +153,7 @@
 				D63C1E842ABBE52800166AED /* goofy.mp3 in Resources */,
 				D63C1E8A2ABE135D00166AED /* Assets.xcassets in Resources */,
 				D63C1E7C2AB384F400166AED /* Preview Assets.xcassets in Resources */,
+				D6FCEE3A2AC3BBF1004B9F1E /* ringer.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
