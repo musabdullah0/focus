@@ -36,8 +36,7 @@ enum TimerType: String, Equatable, CaseIterable {
         case .pomodoro:
             return 25*60
         case .shortbreak:
-//            return 5*60
-            return 5
+            return 5*60
         case .longbreak:
             return 10*60
         }
