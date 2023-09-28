@@ -38,7 +38,6 @@ struct FocusView: View {
     var body: some View {
         VStack {
             CustomSegmentedPicker(selectedItem: $model.timerType) { type in
-                print("clicked \(type)")
                 model.setTimerType(type: type)
             }
             
@@ -60,7 +59,6 @@ struct FocusView: View {
             
         }
         .padding()
-//        .frame(width: 350, height: 220)
         .background(Color.darkBG)
     }
     
@@ -71,6 +69,5 @@ struct FocusView: View {
 struct FocusView_Previews: PreviewProvider {
     static var previews: some View {
         FocusView()
-//            .frame(width: 300, height: 300)
     }
 }
