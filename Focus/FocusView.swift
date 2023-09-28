@@ -46,11 +46,7 @@ struct FocusView: View {
                 CircularProgressView(progress: model.progress, timeText: model.time)
                 
                 Button {
-                    if (!model.isRunning) {
-                        model.start()
-                    } else {
-                        model.pause()
-                    }
+                    model.playPause()
                 } label: {
                     Image(systemName: !model.isRunning ? "play.circle" : "pause.circle")
                         .resizable()

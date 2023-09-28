@@ -50,30 +50,33 @@ enum TimerType: String, Equatable, CaseIterable {
  2.  5 min break
  3. 10 min break
  */
-class PomodoroModel: ObservableObject {
+class PomodoroModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
+    
     @Published var time: String
     @Published var isRunning: Bool
-    @Published var buttonText: String
     @Published var progress: Float = 0.0
     @Published var timerType: TimerType = .pomodoro
     
     private var secondsLeft: Float
     private var timer: Timer?
-    private var audioPlayer: AVAudioPlayer?
+    var audioPlayer = AVAudioPlayer()
     
-    init() {
+    override init() {
         self.time = "25:00"
-        self.buttonText = "start"
         self.secondsLeft = 25.0 * 60.0
         self.isRunning = false
         
         // set up audio player
         let sound = Bundle.main.path(forResource: "ringer", ofType:"mp3")
+        
         do {
-            audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
+            self.audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
         } catch let error {
             print(error.localizedDescription)
         }
+        super.init()
+        self.audioPlayer.delegate = self
+
     }
     
     func updateTime() {
@@ -99,14 +102,34 @@ class PomodoroModel: ObservableObject {
         RunLoop.main.add(self.timer!, forMode: .common)
         
         self.isRunning = true
-        self.buttonText = "pause"
     }
     
     func pause() {
         guard let timer = self.timer else {return}
         timer.invalidate()
         self.isRunning = false
-        self.buttonText = "start"
+    }
+    
+    func playPause() {
+        if !self.isRunning {
+            self.start()
+        } else if self.isRunning && self.secondsLeft > 0 {
+            self.pause()
+        } else if audioPlayer.isPlaying {
+            audioPlayer.stop()
+            audioPlayer.currentTime = 0
+            self.isRunning = false
+            self.secondsLeft = Float(self.timerType.duration)
+            self.updateTime()
+        }
+    }
+    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        print("The song ended")
+        audioPlayer.currentTime = 0
+        self.isRunning = false
+        self.secondsLeft = Float(self.timerType.duration)
+        self.updateTime()
     }
     
     func timeText() -> String {
@@ -118,7 +141,6 @@ class PomodoroModel: ObservableObject {
         if let timer = self.timer {
             timer.invalidate()
             self.isRunning = false
-            self.buttonText = "start"
         }
         self.timerType = type
         self.secondsLeft = Float(type.duration)
@@ -126,7 +148,7 @@ class PomodoroModel: ObservableObject {
     }
     
     func playSound() {
-        audioPlayer?.play()
+        audioPlayer.play()
     }
     
 }
